@@ -11,6 +11,9 @@ import {
   list
 } from "./dir/listDir";
 import {
+  cat
+} from "./basic/cat";
+import {
   getWorkingDirectory
 }
 from "./dir/getWorkingDir";
@@ -31,8 +34,15 @@ const handleUserInput = async (input) => {
     case 'ls':
       await list();
       break;
+    if (input.startsWith('cat')) {
+      const targetDirectory = input.slice(2).trim();
+      await cat(targetDirectory);
+    }
     default:
-      if (input.startsWith('cd')) {
+      if (input.startsWith('cat')) {
+        const targetFile = input.slice(3).trim();
+        await cat(targetFile); // Assuming there's a cat function for reading a file
+      } else if (input.startsWith('cd')) {
         const targetDirectory = input.slice(3).trim();
         await cd(targetDirectory);
       } else {
