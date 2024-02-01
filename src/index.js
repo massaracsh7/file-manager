@@ -1,7 +1,12 @@
 import os from "os";
 import path from "path";
 import fs from "fs/promises";
-import { up } from "./dir/upDir";
+import {
+  up
+} from "./dir/upDir";
+import {
+  cd
+} from "./dir/cdDir";
 import {
   getWorkingDirectory
 }
@@ -19,6 +24,14 @@ const handleUserInput = async (input) => {
       break;
     case 'up':
       await up();
+      break;
+    default:
+      if (input.startsWith('cd')) {
+        const targetDirectory = input.slice(3).trim();
+        await cd(targetDirectory);
+      } else {
+        console.log('Invalid input. Please enter a valid command.');
+      }
       break;
   }
 };
