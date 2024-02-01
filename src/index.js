@@ -8,6 +8,9 @@ import {
   cd
 } from "./dir/cdDir";
 import {
+  list
+} from "./dir/listDir";
+import {
   getWorkingDirectory
 }
 from "./dir/getWorkingDir";
@@ -24,6 +27,9 @@ const handleUserInput = async (input) => {
       break;
     case 'up':
       await up();
+      break;
+    case 'ls':
+      await list();
       break;
     default:
       if (input.startsWith('cd')) {

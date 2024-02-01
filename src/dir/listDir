@@ -1,0 +1,36 @@
+import path from "path";
+import fs from "fs/promises";
+import {
+  getWorkingDirectory
+}
+from "./getWorkingDir";
+
+
+export const list = async () => {
+  try {
+    const currentPath = getWorkingDirectory();
+    const contents = await fs.readdir(currentPath);
+
+    const directories = contents.filter(async (item) => {
+      const stats = await fs.stat(path.join(currentPath, item));
+      return stats.isDirectory();
+    });
+
+    const files = contents.filter(item => !directories.includes(item));
+
+    const sortedDirectories = directories.sort();
+    const sortedFiles = files.sort();
+
+    const combinedList = [...sortedDirectories, ...sortedFiles];
+
+    console.log('\nList of contents in alphabetical order:');
+    combinedList.forEach(async (item) => {
+      const itemType = (await fs.stat(path.join(currentPath, item))).isDirectory() ? 'Folder' : 'File';
+      console.log(`${itemType.padEnd(6)}: ${item}`);
+    });
+
+    console.log('\n');
+  } catch (error) {
+    throw new Error('Failed to list contents.');
+  }
+};
