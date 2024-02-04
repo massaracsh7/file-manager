@@ -44,6 +44,9 @@ import {
   architecture
 } from "./os/architecture.js";
 import {
+  hash
+} from "./hash/hash.js";
+import {
   getWorkingDirectory
 }
 from "./dir/getWorkingDir.js";
@@ -101,7 +104,11 @@ const handleUserInput = async (input) => {
       } else if (input.startsWith('rm')) {
         const filePath = input.slice(3).trim();
         await rm(filePath);
-      } else {
+      }
+      if (input.startsWith('hash')) {
+        const targetFile = input.slice(5).trim();
+        await hash(targetFile); // Assuming there's a cat function for reading a file
+      }  else {
         console.log('Invalid input. Please enter a valid command.');
       }
       break;
