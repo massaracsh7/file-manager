@@ -35,6 +35,15 @@ import {
   cpus
 } from "./os/cpus.js";
 import {
+  homedir
+} from "./os/homeDir.js";
+import {
+  username
+} from "./os/username.js";
+import {
+  architecture
+} from "./os/architecture.js";
+import {
   getWorkingDirectory
 }
 from "./dir/getWorkingDir.js";
@@ -60,6 +69,15 @@ const handleUserInput = async (input) => {
       break;
     case 'os --cpus':
       cpus();
+      break;
+    case 'os --homedir':
+      homedir();
+      break;
+    case 'os --username':
+      username();
+      break;
+    case 'os --architecture':
+      architecture();
       break;
     default:
       if (input.startsWith('cat')) {
