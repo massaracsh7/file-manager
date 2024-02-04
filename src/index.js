@@ -47,6 +47,14 @@ import {
   hash
 } from "./hash/hash.js";
 import {
+  compress
+}
+from "./compress/compress.js";
+import {
+  decompress
+}
+from "./compress/decompress.js";
+import {
   getWorkingDirectory
 }
 from "./dir/getWorkingDir.js";
@@ -108,7 +116,17 @@ const handleUserInput = async (input) => {
       if (input.startsWith('hash')) {
         const targetFile = input.slice(5).trim();
         await hash(targetFile); // Assuming there's a cat function for reading a file
-      }  else {
+      }
+      if (input.startsWith('compress')) {
+        const [sourcePath, targetDirectory] = input.slice(9).trim().split(' ');
+        console.log(sourcePath, targetDirectory);
+        await compress(sourcePath, targetDirectory); // Assuming there's a cat function for reading a file
+      }
+      if (input.startsWith('decompress')) {
+        const [sourcePath, targetDirectory] = input.slice(11).trim().split(' ');
+        console.log(sourcePath, targetDirectory);
+        await decompress(sourcePath, targetDirectory); // Assuming there's a cat function for reading a file
+      } else {
         console.log('Invalid input. Please enter a valid command.');
       }
       break;
