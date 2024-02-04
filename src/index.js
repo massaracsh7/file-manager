@@ -3,20 +3,23 @@ import path from "path";
 import fs from "fs/promises";
 import {
   up
-} from "./dir/upDir";
+} from "./dir/upDir.js";
 import {
   cd
-} from "./dir/cdDir";
+} from "./dir/cdDir.js";
 import {
   list
-} from "./dir/listDir";
+} from "./dir/listDir.js";
 import {
   cat
-} from "./basic/cat";
+} from "./basic/cat.js";
+import {
+  add
+} from "./basic/add.js";
 import {
   getWorkingDirectory
 }
-from "./dir/getWorkingDir";
+from "./dir/getWorkingDir.js";
 
 const handleExit = () => {
   console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
@@ -45,6 +48,9 @@ const handleUserInput = async (input) => {
       } else if (input.startsWith('cd')) {
         const targetDirectory = input.slice(3).trim();
         await cd(targetDirectory);
+      } else if (input.startsWith('add')) {
+        const targetDirectory = input.slice(3).trim();
+        await add(targetDirectory);
       } else {
         console.log('Invalid input. Please enter a valid command.');
       }

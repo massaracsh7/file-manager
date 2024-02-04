@@ -1,7 +1,7 @@
 import {
   changeDir
 }
-from "./changeDir"
+from "./changeDir.js"
 
 export const up = async () => {
   try {

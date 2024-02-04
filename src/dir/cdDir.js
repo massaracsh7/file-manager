@@ -1,7 +1,7 @@
 import {
   changeDir
 }
-from "./changeDir"
+from "./changeDir.js"
 
 export const cd = async (pathName) => {
   console.log(pathName);

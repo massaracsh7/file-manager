@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import {
   getWorkingDirectory
 }
-from "./getWorkingDir";
+from "./getWorkingDir.js";
 
 export const changeDir = async (pathName) => {
   try {
