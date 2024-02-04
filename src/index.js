@@ -23,6 +23,9 @@ import {
   cp
 } from "./basic/copy.js";
 import {
+  mv
+} from "./basic/mv.js";
+import {
   getWorkingDirectory
 }
 from "./dir/getWorkingDir.js";
@@ -57,8 +60,13 @@ const handleUserInput = async (input) => {
         const [oldFileName, newFileName] = input.slice(3).trim().split(' ');
         await rn(oldFileName, newFileName);
       } else if (input.startsWith('cp')) {
-          const [sourcePath, targetDirectory] = input.slice(3).trim().split(/\s+/); // Split by any whitespace
-          await cp(sourcePath, targetDirectory);
+        const [sourcePath, targetDirectory] = input.slice(3).trim().split(' '); // Split by any whitespace
+        await cp(sourcePath, targetDirectory);
+      }
+      else if (input.startsWith('mv')) {
+        const [sourcePath, targetDirectory] = input.slice(3).trim().split(' ');
+        console.log(sourcePath, targetDirectory) // Split by any whitespace
+        await mv(sourcePath, targetDirectory);
       } else {
         console.log('Invalid input. Please enter a valid command.');
       }
