@@ -26,6 +26,9 @@ import {
   mv
 } from "./basic/mv.js";
 import {
+  rm
+} from "./basic/rm.js";
+import {
   getWorkingDirectory
 }
 from "./dir/getWorkingDir.js";
@@ -65,8 +68,10 @@ const handleUserInput = async (input) => {
       }
       else if (input.startsWith('mv')) {
         const [sourcePath, targetDirectory] = input.slice(3).trim().split(' ');
-        console.log(sourcePath, targetDirectory) // Split by any whitespace
         await mv(sourcePath, targetDirectory);
+      } else if (input.startsWith('rm')) {
+        const filePath = input.slice(3).trim();
+        await rm(filePath);
       } else {
         console.log('Invalid input. Please enter a valid command.');
       }
