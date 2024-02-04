@@ -29,6 +29,12 @@ import {
   rm
 } from "./basic/rm.js";
 import {
+  eol
+} from "./os/eol.js";
+import {
+  cpus
+} from "./os/cpus.js";
+import {
   getWorkingDirectory
 }
 from "./dir/getWorkingDir.js";
@@ -49,6 +55,12 @@ const handleUserInput = async (input) => {
     case 'ls':
       await list();
       break;
+    case 'os --EOL':
+      eol();
+      break;
+    case 'os --cpus':
+      cpus();
+      break;
     default:
       if (input.startsWith('cat')) {
         const targetFile = input.slice(3).trim();
@@ -65,8 +77,7 @@ const handleUserInput = async (input) => {
       } else if (input.startsWith('cp')) {
         const [sourcePath, targetDirectory] = input.slice(3).trim().split(' '); // Split by any whitespace
         await cp(sourcePath, targetDirectory);
-      }
-      else if (input.startsWith('mv')) {
+      } else if (input.startsWith('mv')) {
         const [sourcePath, targetDirectory] = input.slice(3).trim().split(' ');
         await mv(sourcePath, targetDirectory);
       } else if (input.startsWith('rm')) {
