@@ -17,6 +17,9 @@ import {
   add
 } from "./basic/add.js";
 import {
+  rn
+} from "./basic/rn.js";
+import {
   getWorkingDirectory
 }
 from "./dir/getWorkingDir.js";
@@ -37,10 +40,6 @@ const handleUserInput = async (input) => {
     case 'ls':
       await list();
       break;
-    if (input.startsWith('cat')) {
-      const targetDirectory = input.slice(2).trim();
-      await cat(targetDirectory);
-    }
     default:
       if (input.startsWith('cat')) {
         const targetFile = input.slice(3).trim();
@@ -51,6 +50,9 @@ const handleUserInput = async (input) => {
       } else if (input.startsWith('add')) {
         const targetDirectory = input.slice(3).trim();
         await add(targetDirectory);
+      } else if (input.startsWith('rn')) {
+        const [oldFileName, newFileName] = input.slice(3).trim().split(' ');
+        await rn(oldFileName, newFileName);
       } else {
         console.log('Invalid input. Please enter a valid command.');
       }
