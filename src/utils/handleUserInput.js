@@ -55,7 +55,7 @@ export const handleUserInput = async (input) => {
         const [oldFileName, newFileName] = input.slice(3).trim().split(' ');
         await rn(oldFileName, newFileName);
       } else if (input.startsWith('cp')) {
-        const [sourcePath, targetDirectory] = input.slice(3).trim().split(' '); // Split by any whitespace
+        const [sourcePath, targetDirectory] = input.slice(3).trim().split(' '); 
         cp(sourcePath, targetDirectory);
       } else if (input.startsWith('mv')) {
         const [sourcePath, targetDirectory] = input.slice(3).trim().split(' ');
