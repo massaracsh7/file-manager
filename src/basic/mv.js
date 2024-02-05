@@ -4,7 +4,7 @@ import fs from "fs";
 import {
   getWorkingDirectory
 }
-from "../dir/getWorkingDir.js";
+from "../utils/getWorkingDir.js";
 import {
   ERROR_MESSAGE
 } from "../constants.js";

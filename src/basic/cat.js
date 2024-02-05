@@ -12,7 +12,7 @@ export const cat = (filePath) => {
       process.stdout.write(chunk);
     });
     fileStream.on('end', () => {
-      console.log('\nFile read complete.');
+      console.log('\n ');
     });
     fileStream.on('error', (error) => {
       console.error(ERROR_MESSAGE);

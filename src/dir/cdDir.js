@@ -1,7 +1,7 @@
 import {
   changeDir
 }
-from "./index.js"
+from "../utils/index.js"
 import {
   ERROR_MESSAGE
 } from "../constants.js";

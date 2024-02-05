@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import {
   getWorkingDirectory
 }
-from "./getWorkingDir.js";
+from "../utils/index.js";
 import {
   ERROR_MESSAGE
 } from "../constants.js";

@@ -53,7 +53,7 @@ from "./compress/decompress.js";
 import {
   getWorkingDirectory
 }
-from "./dir/getWorkingDir.js";
+from "./utils/getWorkingDir.js";
 import {
   ERROR_INPUT,
   WELCOME,
@@ -76,7 +76,7 @@ process.stdin.on('data', async (data) => {
   try {
     await handleUserInput(input);
   } catch (error) {
-    console.error(`${ ERROR_INPUT}`);
+    console.error(ERROR_INPUT);
   }
   console.log(`${CURRENTLY_DIRECTORY} ${getWorkingDirectory()}`);
 });

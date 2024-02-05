@@ -1,10 +1,5 @@
-import os from "os";
 import path from "path";
 import fs from "fs";
-import {
-  getWorkingDirectory
-}
-from "../dir/index.js";
 import {
   ERROR_MESSAGE
 } from "../constants.js";
