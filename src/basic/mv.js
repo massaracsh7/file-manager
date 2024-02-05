@@ -5,6 +5,9 @@ import {
   getWorkingDirectory
 }
 from "../dir/getWorkingDir.js";
+import {
+  ERROR_MESSAGE
+} from "../constants.js";
 
 
 export const mv = async (sourcePath, targetDirectory) => {
@@ -17,21 +20,15 @@ export const mv = async (sourcePath, targetDirectory) => {
     const writable = fs.createWriteStream(targetFile);
     readable.pipe(writable)
     readable.on('error', () => {
-      console.error(`Failed`);
+      console.error(ERROR_MESSAGE);
     })
-
     readable.on('end', () => {
       fs.unlink(sourceFile, () => {})
     })
-
     writable.on('error', () => {
-      console.error(`Failed`);
+      console.error(ERROR_MESSAGE);
     })
-
-    writable.on('finish', () => {
-      console.log('file is moved')
-    })
-  } catch (error) {
-    console.error(`Failed`);
+   } catch (error) {
+    console.error(ERROR_MESSAGE);
   }
 };

@@ -4,23 +4,8 @@ import {
   list
 } from "../dir/index.js";
 import {
-  cat
-} from "../basic/cat.js";
-import {
-  add
-} from "../basic/add.js";
-import {
-  rn
-} from "../basic/rn.js";
-import {
-  cp
-} from "../basic/copy.js";
-import {
-  mv
-} from "../basic/mv.js";
-import {
-  rm
-} from "../basic/rm.js";
+  cat, add, rn, cp, mv, rm
+} from "../basic/index.js";
 import {
   eol
 } from "../os/eol.js";
