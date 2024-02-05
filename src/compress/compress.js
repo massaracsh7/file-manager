@@ -3,17 +3,26 @@ import {
   createReadStream,
   createWriteStream
 } from 'fs'
+import {
+  ERROR_MESSAGE
+} from "../constants.js"
 
 export const compress = (pathToSource, pathToDestination) => {
-  const readStream = createReadStream(pathToSource);
-  const writeStream = createWriteStream(pathToDestination);
-  const brotliStream = gzip.createBrotliCompress()
-  const result = readStream.pipe(brotliStream).pipe(writeStream)
-  result.on('finish', () => {
-    console.log('file is compressed')
-  })
-
-  result.on('error', () => {
-    console.log('Error')
-  })
+  try {
+    const readStream = createReadStream(pathToSource);
+    readStream.on('error', () => {
+      console.error(ERROR_MESSAGE);
+    })
+    const writeStream = createWriteStream(pathToDestination);
+    writeStream.on('error', () => {
+      console.error(ERROR_MESSAGE);
+    })
+    const brotliStream = gzip.createBrotliCompress()
+    const result = readStream.pipe(brotliStream).pipe(writeStream)
+    result.on('error', () => {
+      console.error(ERROR_MESSAGE);
+    })
+  } catch (error) {
+    console.error(ERROR_MESSAGE);
+  }
 }
