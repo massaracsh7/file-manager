@@ -1,37 +1,19 @@
 import {
-  up,
-  cd,
-  list
+  up, cd, list
 } from "../dir/index.js";
 import {
   cat, add, rn, cp, mv, rm
 } from "../basic/index.js";
 import {
-  eol
-} from "../os/eol.js";
-import {
-  cpus
-} from "../os/cpus.js";
-import {
-  homedir
-} from "../os/homeDir.js";
-import {
-  username
-} from "../os/username.js";
-import {
-  architecture
-} from "../os/architecture.js";
+  eol, cpus, homedir, username, architecture
+} from "../os/index.js";
 import {
   hash
 } from "../hash/hash.js";
 import {
-  compress
+  compress, decompress
 }
-from "../compress/compress.js";
-import {
-  decompress
-}
-from "../compress/decompress.js";
+from "../compress/index.js";
 
 export const handleUserInput = async (input) => {
   switch (input) {

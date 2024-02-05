@@ -4,8 +4,8 @@ import {
 import {
   ERROR_MESSAGE
 } from "../constants.js";
-export const cat = (filePath) => {
 
+export const cat = (filePath) => {
   try {
     const fileStream = createReadStream(filePath, 'utf-8');
     fileStream.on('data', (chunk) => {
