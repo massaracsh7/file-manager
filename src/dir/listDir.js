@@ -4,6 +4,9 @@ import {
   getWorkingDirectory
 }
 from "./getWorkingDir.js";
+import {
+  ERROR_MESSAGE
+} from "../constants.js";
 
 
 export const list = async () => {
@@ -11,26 +14,31 @@ export const list = async () => {
     const currentPath = getWorkingDirectory();
     const contents = await fs.readdir(currentPath);
 
-    const directories = contents.filter(async (item) => {
-      const stats = await fs.stat(path.join(currentPath, item));
-      return stats.isDirectory();
-    });
+        const directories = [];
+        const files = [];
 
-    const files = contents.filter(item => !directories.includes(item));
+        for (const item of contents) {
+          const itemPath = path.join(currentPath, item);
+          const stat = await fs.stat(itemPath);
+
+          if (stat.isDirectory()) {
+            directories.push({
+              Name: item,
+              Type: 'directory'
+            });
+          } else if (stat.isFile()) {
+            files.push({
+              Name: item,
+              Type: 'file'
+            });
+          }
+        }
 
     const sortedDirectories = directories.sort();
     const sortedFiles = files.sort();
 
-    const combinedList = [...sortedDirectories, ...sortedFiles];
-
-    console.log('\nList of contents in alphabetical order:');
-    combinedList.forEach(async (item) => {
-      const itemType = (await fs.stat(path.join(currentPath, item))).isDirectory() ? 'Folder' : 'File';
-      console.log(`${itemType.padEnd(6)}: ${item}`);
-    });
-
-    console.log('\n');
+    console.table([...sortedDirectories, ...sortedFiles]);
   } catch (error) {
-    throw new Error('Failed to list contents.');
+    console.error(`${ERROR_MESSAGE}`);
   }
 };

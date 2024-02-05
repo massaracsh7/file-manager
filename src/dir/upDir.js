@@ -1,7 +1,10 @@
 import {
   changeDir
 }
-from "./changeDir.js"
+from "./index.js"
+import {
+  ERROR_MESSAGE
+} from "../constants.js";
 
 export const up = async () => {
   try {
@@ -10,7 +13,7 @@ export const up = async () => {
       console.log(`You went up to: ${newDirectory}`);
     }
   } catch (error) {
-    console.error(`Operation failed: ${error.message}`);
+    console.error(`${ERROR_MESSAGE}`);
   }
 };
 
